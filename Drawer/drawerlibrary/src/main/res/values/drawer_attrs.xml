@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Drawer">
+        <attr name="drawer_position">
+            <enum name="left" value="2" />
+            <enum name="right" value="3" />
+        </attr>
+        <attr name="drawer_handle" format="reference" />
+        <attr name="drawer_content" format="reference" />
+        <attr name="drawer_closeHandle" format="reference"/>
+        <attr name="drawer_handle_openWidth" format="dimension"/>
+        <attr name="drawer_handle_closeWidth" format="dimension"/>
+        <attr name="drawer_openedBackground" format="reference|color" />
+        <attr name="drawer_closedBackground" format="reference|color" />
+    </declare-styleable>
+</resources>
