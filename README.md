@@ -8,7 +8,9 @@
  ![image](https://github.com/gpfduoduo/DrawerOnCorner/blob/master/Drawer/screen%20capture/GIF.gif "动态图")
  
 ## 具体的使用方法
- 
+
+### XML中使用
+ 通过设置属性drawer获取一些参数和位置（left or right)
        <com.example.lenovo.drawerlibrary.Drawer
         android:id="@+id/drawer2"
         android:layout_width="wrap_content"
@@ -118,7 +120,9 @@
         </LinearLayout>
     </com.example.lenovo.drawerlibrary.Drawer>
 
+### 代码中也可以设置位置
+   通过setPosition(left or right)来实现位置的变化
+   
 ## 需要注意的地方
-
 代码中使用动画的时候采用了ObjectAnimator，必须实现set和get方法，否则对于一些机器可能出现carsh，这样用的话，如果你
 使用了代码混淆，set和get方法可能会被去除，所以最好的方法是使用ValueAnimator，监听其变化过程，然后设置属性值。
