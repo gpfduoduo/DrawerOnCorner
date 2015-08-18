@@ -3,11 +3,11 @@
 
 点击左下角的按钮，抽屉内容便滑动而出，再次点击缩回。
 
-##动态效果图
+## 动态效果图
 
  ![image](https://github.com/gpfduoduo/DrawerOnCorner/blob/master/Drawer/screen%20capture/GIF.gif "动态图")
  
- ##具体的使用方法
+## 具体的使用方法
  
        <com.example.lenovo.drawerlibrary.Drawer
         android:id="@+id/drawer2"
@@ -118,7 +118,7 @@
         </LinearLayout>
     </com.example.lenovo.drawerlibrary.Drawer>
 
-##需要注意的地方
+## 需要注意的地方
 
 代码中使用动画的时候采用了ObjectAnimator，必须实现set和get方法，否则对于一些机器可能出现carsh，这样用的话，如果你
 使用了代码混淆，set和get方法可能会被去除，所以最好的方法是使用ValueAnimator，监听其变化过程，然后设置属性值。
