@@ -5,7 +5,7 @@
 
 具体的使用方法：
 
- ![image](https://github.com/gpfduoduo/DrawerOnCorner/tree/master/Drawer/screen capture/device-2015-08-18-123035.png)
+ ![image](https://github.com/gpfduoduo/DrawerOnCorner/tree/master/Drawer/screen capture/GIF.gif)
  
  
 <com.example.lenovo.drawerlibrary.Drawer
