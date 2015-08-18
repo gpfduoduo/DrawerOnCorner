@@ -8,7 +8,7 @@
  ![image](https://github.com/gpfduoduo/DrawerOnCorner/tree/master/Drawer/screen capture/GIF.gif)
  
  
-<com.example.lenovo.drawerlibrary.Drawer
+   <com.example.lenovo.drawerlibrary.Drawer
         android:id="@+id/drawer2"
         android:layout_width="wrap_content"
         android:layout_height="65dp"
