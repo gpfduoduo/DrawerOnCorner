@@ -3,9 +3,9 @@
 
 点击左下角的按钮，抽屉内容便滑动而出，再次点击缩回。
 
-具体的使用方法：
+##具体的使用方法
 
- ![image](https://github.com/gpfduoduo/DrawerOnCorner/tree/master/Drawer/screen capture/GIF.gif)
+ ![image](https://github.com/gpfduoduo/DrawerOnCorner/blob/master/Drawer/screen%20capture/GIF.gif "动态图")
  
  
    <com.example.lenovo.drawerlibrary.Drawer
