@@ -4,10 +4,12 @@
 点击左下角的按钮，抽屉内容便滑动而出，再次点击缩回。
 
 ##动态效果图
+
  ![image](https://github.com/gpfduoduo/DrawerOnCorner/blob/master/Drawer/screen%20capture/GIF.gif "动态图")
  
  ##具体的使用方法
-   <com.example.lenovo.drawerlibrary.Drawer
+ 
+       <com.example.lenovo.drawerlibrary.Drawer
         android:id="@+id/drawer2"
         android:layout_width="wrap_content"
         android:layout_height="65dp"
