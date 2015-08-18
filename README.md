@@ -5,8 +5,9 @@
 
 具体的使用方法：
 
-
-
+ ![image](https://github.com/gpfduoduo/DrawerOnCorner/tree/master/Drawer/GIF.gif)
+ 
+ 
 <com.example.lenovo.drawerlibrary.Drawer
         android:id="@+id/drawer2"
         android:layout_width="wrap_content"
