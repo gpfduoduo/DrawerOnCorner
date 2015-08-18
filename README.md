@@ -4,6 +4,9 @@
 点击左下角的按钮，抽屉内容便滑动而出，再次点击缩回。
 
 具体的使用方法：
+
+
+
 <com.example.lenovo.drawerlibrary.Drawer
         android:id="@+id/drawer2"
         android:layout_width="wrap_content"
