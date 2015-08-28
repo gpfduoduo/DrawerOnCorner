@@ -3,6 +3,13 @@
 
 点击左下角的按钮，抽屉内容便滑动而出，再次点击缩回。
 
+## 实现方法
+1、本文所用的方法  
+重写dispatchDraw方法，并通过Canvas.translate函数平移画布实现控件的显示和隐藏，具体的最右边小View的大小通过修改LayoutPramater来实现。   
+2、其他实现方法
+整体布局通过layout_margin中的leftMargin的数值变化来实现，最右边的view同上。   
+
+
 ## 动态效果图
 
  ![image](https://github.com/gpfduoduo/DrawerOnCorner/blob/master/Drawer/screen%20capture/GIF.gif "动态图")
