@@ -336,10 +336,12 @@ public class DrawerLayout extends RelativeLayout
         //无论打开还是关闭只要过半就关闭，反之打开
         if (drawerLayoutParams.bottomMargin <= -(mDrawerLayoutContent.getMeasuredHeight()) / 2)
         {
+            isShowing = true;
             closeDrawer();
         }
         else
         {
+            isShowing = false;
             openDrawer();
         }
 
@@ -349,6 +351,9 @@ public class DrawerLayout extends RelativeLayout
     public void openDrawer()
     {
         Log.d(tag, "openDrawer");
+
+        if (isShowing)
+            return;
 
         ValueAnimator openAnimator = ValueAnimator.ofFloat(
             drawerLayoutParams.bottomMargin, 0).setDuration(DEFAULT_DURATION);
@@ -380,6 +385,9 @@ public class DrawerLayout extends RelativeLayout
     public void closeDrawer()
     {
         Log.d(tag, "closeDrawer function");
+
+        if (!isShowing)
+            return;
 
         ValueAnimator closeAnimator = ValueAnimator.ofFloat(
             drawerLayoutParams.bottomMargin, -mDrawerLayoutContent.getMeasuredHeight())
