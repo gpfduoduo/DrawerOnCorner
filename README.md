@@ -12,7 +12,13 @@
 
 ## 动态效果图
 
- ![image](https://github.com/gpfduoduo/DrawerOnCorner/blob/master/Drawer/screen%20capture/GIF.gif "动态图")
+### Drawer  
+
+ ![image](https://github.com/gpfduoduo/DrawerOnCorner/blob/master/Drawer/screen%20capture/GIF.gif "动态图")   
+ 
+### DrawerLayout  
+
+ ![image](https://github.com/gpfduoduo/DrawerOnCorner/blob/master/Drawer/screen%20capture/bottom_drawer.gif "底部Drawer动态图")  
  
 ## 具体的使用方法
 
