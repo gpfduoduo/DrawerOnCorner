@@ -263,6 +263,7 @@ public class DrawerLayout extends RelativeLayout
             {
                 drawerLayoutParams.bottomMargin = 0;
                 isShowing = true;
+                mDrawerListener.drawerOpened();
             }
 
             if (drawerLayoutParams.bottomMargin < -mDrawerLayoutContent
@@ -270,6 +271,8 @@ public class DrawerLayout extends RelativeLayout
             {
                 drawerLayoutParams.bottomMargin = -mDrawerLayoutContent
                         .getMeasuredHeight();
+                isShowing = false;
+                mDrawerListener.drawerClosed();
             }
 
             mDrawer.setLayoutParams(drawerLayoutParams);
