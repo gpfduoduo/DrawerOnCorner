@@ -1,15 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.example.lenovo.drawerlibrary.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:drawer="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dial_drawer"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#000"
+    android:background="#ffffff"
     drawer:DrawerLayoutContent_ID="@+id/drawerContent"
     drawer:DrawerLayoutHandler_ID="@+id/drawerHandle"
     drawer:DrawerLayout_ID="@+id/drawer2">
 
+    <LinearLayout
+        android:id="@+id/number_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="#000">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/del_click"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Del" />
+    </LinearLayout>
+
     <ListView
-        android:id="@+id/listview"
+        android:id="@+id/list_view"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"></ListView>
 

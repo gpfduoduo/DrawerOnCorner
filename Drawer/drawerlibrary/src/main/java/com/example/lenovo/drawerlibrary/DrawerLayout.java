@@ -70,7 +70,15 @@ public class DrawerLayout extends RelativeLayout
 
     private boolean isFirstInit = false;
 
+    private int initialState = State.Close;
+
     private DrawerListener mDrawerListener;
+
+    public static interface State
+    {
+        public static final int Open = 0;
+        public static final int Close = 1;
+    }
 
     public interface DrawerListener
     {
@@ -97,7 +105,12 @@ public class DrawerLayout extends RelativeLayout
         init(context, attrs);
     }
 
-    public void setmDrawerListener(DrawerListener listener)
+    public void setInitialState(int state)
+    {
+        initialState = state;
+    }
+
+    public void setDrawerListener(DrawerListener listener)
     {
         this.mDrawerListener = listener;
     }
@@ -117,6 +130,8 @@ public class DrawerLayout extends RelativeLayout
     {
         super.onLayout(changed, l, t, r, b);
 
+        Log.d(tag, "DrawerLayout onLayout function");
+
         if (!isFirstInit)
         {
             for (int i = 0; i < getChildCount(); i++)
@@ -126,8 +141,18 @@ public class DrawerLayout extends RelativeLayout
                 {
                     Log.d(tag, "onLayout");
                     drawerLayoutParams = (MarginLayoutParams) view.getLayoutParams();
-                    drawerLayoutParams.bottomMargin = -mDrawerLayoutContent
-                            .getMeasuredHeight();
+                    if (initialState == State.Close)
+                    {
+                        drawerLayoutParams.bottomMargin = -mDrawerLayoutContent
+                                .getMeasuredHeight();
+                        isShowing = false;
+                    }
+                    else
+                    {
+                        drawerLayoutParams.bottomMargin = 0;
+                        isShowing = true;
+                    }
+
                     view.setLayoutParams(drawerLayoutParams);
                     break;
                 }
@@ -259,7 +284,7 @@ public class DrawerLayout extends RelativeLayout
             yDown = yMove;
             drawerLayoutParams.bottomMargin -= moveDistanceY;
 
-            if (drawerLayoutParams.bottomMargin > 0)
+            if (drawerLayoutParams.bottomMargin >= 0)
             {
                 drawerLayoutParams.bottomMargin = 0;
                 isShowing = true;
