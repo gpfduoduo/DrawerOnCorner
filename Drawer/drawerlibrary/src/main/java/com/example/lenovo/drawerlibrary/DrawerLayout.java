@@ -70,6 +70,15 @@ public class DrawerLayout extends RelativeLayout
 
     private boolean isFirstInit = false;
 
+    private DrawerListener mDrawerListener;
+
+    public interface DrawerListener
+    {
+        public void drawerOpened();
+
+        public void drawerClosed();
+    }
+
     public DrawerLayout(Context context)
     {
         super(context);
@@ -86,6 +95,21 @@ public class DrawerLayout extends RelativeLayout
     {
         super(context, attrs, defStyleAttr);
         init(context, attrs);
+    }
+
+    public void setmDrawerListener(DrawerListener listener)
+    {
+        this.mDrawerListener = listener;
+    }
+
+    /**
+     * 判断是打开还是关闭
+     * 
+     * @return
+     */
+    public boolean isOpened()
+    {
+        return isShowing;
     }
 
     @Override
@@ -254,24 +278,27 @@ public class DrawerLayout extends RelativeLayout
 
     private void processUp(MotionEvent event)
     {
+        Log.d(tag, "process up isShowing = " + isShowing);
         if (!isTouchingDrawer)
         {
             return;
         }
-        long pressDuration = System.currentTimeMillis() - mPressStartTime;
+        //long pressDuration = System.currentTimeMillis() - mPressStartTime;
 
         isTouchingDrawer = false;
 
         //相当于点击打开
-        if (!isShowing && pressDuration < MAX_CLICK_TIME
+        if (!isShowing /* && pressDuration < MAX_CLICK_TIME */
             && distance(xDown, yDown, event.getX(), event.getY()) < MAX_CLICK_DISTANCE)
         {
             openDrawer();
             return;
         }
 
-        if (isViewHit(mDrawerLayoutHandler, (int) xDown, (int) yDown) && isShowing
-            && pressDuration < MAX_CLICK_TIME
+        //相当于点击关闭
+        if (isShowing
+            && isViewHit(mDrawerLayoutHandler, (int) event.getX(), (int) event.getY())
+            /* && pressDuration < MAX_CLICK_TIME */
             && distance(xDown, yDown, event.getX(), event.getY()) < MAX_CLICK_DISTANCE)
         {
             closeDrawer();
@@ -291,7 +318,7 @@ public class DrawerLayout extends RelativeLayout
         isDragging = false;
     }
 
-    private void openDrawer()
+    public void openDrawer()
     {
         Log.d(tag, "openDrawer");
 
@@ -314,13 +341,15 @@ public class DrawerLayout extends RelativeLayout
             public void onAnimationEnd(Animator animation)
             {
                 isShowing = true;
+                Log.d(tag, "open drawer end isShowing = " + isShowing);
+                mDrawerListener.drawerOpened();
             }
         });
         openAnimator.setInterpolator(new LinearInterpolator());
         openAnimator.start();
     }
 
-    private void closeDrawer()
+    public void closeDrawer()
     {
         Log.d(tag, "closeDrawer function");
 
@@ -344,6 +373,8 @@ public class DrawerLayout extends RelativeLayout
             public void onAnimationEnd(Animator animation)
             {
                 isShowing = false;
+                Log.d(tag, "close drawer end isShowing = " + isShowing);
+                mDrawerListener.drawerClosed();
             }
         });
         closeAnimator.setInterpolator(new LinearInterpolator());
