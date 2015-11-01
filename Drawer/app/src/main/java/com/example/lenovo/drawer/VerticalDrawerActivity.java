@@ -24,7 +24,8 @@ import com.nineoldandroids.view.ViewPropertyAnimator;
 /**
  * Created by 郭攀峰 on 2015/10/31.
  */
-public class VerticalDrawerActivity extends AppCompatActivity {
+public class VerticalDrawerActivity extends AppCompatActivity
+{
 
     private static final String tag = VerticalDrawerActivity.class.getSimpleName();
 
@@ -33,27 +34,32 @@ public class VerticalDrawerActivity extends AppCompatActivity {
 
     private int mTranslationY = 0;
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         Log.d(tag, "activity onCreate function");
 
         setContentView(R.layout.activity_verticaldrawer);
 
-        findViewById(R.id.click).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.click).setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
-                Toast.makeText(VerticalDrawerActivity.this, "clicked", Toast.LENGTH_SHORT).show();
+            public void onClick(View v)
+            {
+                Toast.makeText(VerticalDrawerActivity.this, "clicked", Toast.LENGTH_SHORT)
+                        .show();
             }
         });
 
         mNumberLayout = (LinearLayout) findViewById(R.id.number_layout);
 
         Button mDelBtn = (Button) findViewById(R.id.del_click);
-        mDelBtn.setOnClickListener(new View.OnClickListener() {
+        mDelBtn.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 Log.d(tag, "clicked delete button");
             }
         });
@@ -62,47 +68,50 @@ public class VerticalDrawerActivity extends AppCompatActivity {
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.dial_drawer);
         mDrawerLayout.setInitialState(DrawerLayout.State.Open); //set drawer initial state: open or close
-        mDrawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
+        mDrawerLayout.setDrawerListener(new DrawerLayout.DrawerListener()
+        {
             @Override
-            public void drawerOpened() {
+            public void drawerOpened()
+            {
                 showNumberView();
             }
 
             @Override
-            public void drawerClosed() {
+            public void drawerClosed()
+            {
                 hideNumberView();
             }
         });
     }
 
-    private void fillListView(ListView view) {
+    private void fillListView(ListView view)
+    {
         List<String> list = new ArrayList<String>(100);
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 100; i++)
+        {
             list.add("Item " + i);
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+            android.R.layout.simple_list_item_1, list);
         view.setAdapter(adapter);
     }
 
-    private void showNumberView() {
+    private void showNumberView()
+    {
         ViewHelper.setAlpha(mNumberLayout, 0);
-        ViewHelper.setTranslationY(mNumberLayout, mTranslationY - mNumberLayout.getHeight());
-        ViewPropertyAnimator
-                .animate(mNumberLayout)
-                .alpha(1f)
-                .translationY(mTranslationY)
-                .setInterpolator(new DecelerateInterpolator())
-                .setDuration(300)
-                .setStartDelay(0)
-                .start();
+        ViewHelper.setTranslationY(mNumberLayout,
+            mTranslationY - mNumberLayout.getHeight());
+        ViewPropertyAnimator.animate(mNumberLayout).alpha(1f).translationY(mTranslationY)
+                .setInterpolator(new DecelerateInterpolator()).setDuration(300)
+                .setStartDelay(0).start();
     }
 
-    private void hideNumberView() {
+    private void hideNumberView()
+    {
         ViewPropertyAnimator.animate(mNumberLayout).alpha(0f)
                 .translationY(-mNumberLayout.getHeight() + mTranslationY)
-                .setInterpolator(new AccelerateInterpolator())
-                .setDuration(300).start();
+                .setInterpolator(new AccelerateInterpolator()).setDuration(300).start();
 
     }
 }
