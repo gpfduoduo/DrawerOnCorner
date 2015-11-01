@@ -336,12 +336,10 @@ public class DrawerLayout extends RelativeLayout
         //无论打开还是关闭只要过半就关闭，反之打开
         if (drawerLayoutParams.bottomMargin <= -(mDrawerLayoutContent.getMeasuredHeight()) / 2)
         {
-            isShowing = true;
             closeDrawer();
         }
         else
         {
-            isShowing = false;
             openDrawer();
         }
 
