@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -31,7 +32,7 @@ public class VerticalDrawerActivity extends AppCompatActivity
 
     private DrawerLayout mDrawerLayout;
     private LinearLayout mNumberLayout;
-
+    private LinearLayout mDrawerContent;
     private int mTranslationY = 0;
 
     @Override
@@ -42,11 +43,9 @@ public class VerticalDrawerActivity extends AppCompatActivity
 
         setContentView(R.layout.activity_verticaldrawer);
 
-        findViewById(R.id.click).setOnClickListener(new View.OnClickListener()
-        {
+        findViewById(R.id.click).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 Toast.makeText(VerticalDrawerActivity.this, "clicked", Toast.LENGTH_SHORT)
                         .show();
             }
@@ -54,6 +53,13 @@ public class VerticalDrawerActivity extends AppCompatActivity
 
         mNumberLayout = (LinearLayout) findViewById(R.id.number_layout);
 
+        mDrawerContent = (LinearLayout) findViewById(R.id.drawerContent);
+        mDrawerContent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(tag, "drawer content click");
+            }
+        });
         Button mDelBtn = (Button) findViewById(R.id.del_click);
         mDelBtn.setOnClickListener(new View.OnClickListener()
         {
@@ -73,13 +79,13 @@ public class VerticalDrawerActivity extends AppCompatActivity
             @Override
             public void drawerOpened()
             {
-                showNumberView();
+                //showNumberView();
             }
 
             @Override
             public void drawerClosed()
             {
-                hideNumberView();
+                //hideNumberView();
             }
         });
     }
@@ -95,6 +101,16 @@ public class VerticalDrawerActivity extends AppCompatActivity
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
             android.R.layout.simple_list_item_1, list);
         view.setAdapter(adapter);
+
+        view.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                    long id)
+            {
+                Log.d(tag,"ListView item clicked");
+            }
+        });
     }
 
     private void showNumberView()
