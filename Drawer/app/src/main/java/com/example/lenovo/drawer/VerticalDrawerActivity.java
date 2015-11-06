@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.lenovo.drawerlibrary.DrawerLayout;
+import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.view.ViewHelper;
 import com.nineoldandroids.view.ViewPropertyAnimator;
 
@@ -34,6 +35,8 @@ public class VerticalDrawerActivity extends AppCompatActivity
     private LinearLayout mNumberLayout;
     private LinearLayout mDrawerContent;
     private int mTranslationY = 0;
+    private boolean isOpened = false;
+    private boolean isClosed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -43,9 +46,11 @@ public class VerticalDrawerActivity extends AppCompatActivity
 
         setContentView(R.layout.activity_verticaldrawer);
 
-        findViewById(R.id.click).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.click).setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 Toast.makeText(VerticalDrawerActivity.this, "clicked", Toast.LENGTH_SHORT)
                         .show();
             }
@@ -54,9 +59,11 @@ public class VerticalDrawerActivity extends AppCompatActivity
         mNumberLayout = (LinearLayout) findViewById(R.id.number_layout);
 
         mDrawerContent = (LinearLayout) findViewById(R.id.drawerContent);
-        mDrawerContent.setOnClickListener(new View.OnClickListener() {
+        mDrawerContent.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 Log.d(tag, "drawer content click");
             }
         });
@@ -79,13 +86,15 @@ public class VerticalDrawerActivity extends AppCompatActivity
             @Override
             public void drawerOpened()
             {
-                //showNumberView();
+                if (!isOpened)
+                    showNumberView();
             }
 
             @Override
             public void drawerClosed()
             {
-                //hideNumberView();
+                if (!isClosed)
+                    hideNumberView();
             }
         });
     }
@@ -108,7 +117,7 @@ public class VerticalDrawerActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View view, int position,
                     long id)
             {
-                Log.d(tag,"ListView item clicked");
+                Log.d(tag, "ListView item clicked");
             }
         });
     }
@@ -120,14 +129,31 @@ public class VerticalDrawerActivity extends AppCompatActivity
             mTranslationY - mNumberLayout.getHeight());
         ViewPropertyAnimator.animate(mNumberLayout).alpha(1f).translationY(mTranslationY)
                 .setInterpolator(new DecelerateInterpolator()).setDuration(300)
-                .setStartDelay(0).start();
+                .setStartDelay(0).setListener(new CustomAnimatorListener()
+                {
+                    @Override
+                    public void onAnimationEnd(Animator animator)
+                    {
+                        isOpened = true;
+                        isClosed = false;
+                    }
+                }).start();
     }
 
     private void hideNumberView()
     {
         ViewPropertyAnimator.animate(mNumberLayout).alpha(0f)
                 .translationY(-mNumberLayout.getHeight() + mTranslationY)
-                .setInterpolator(new AccelerateInterpolator()).setDuration(300).start();
+                .setInterpolator(new AccelerateInterpolator()).setDuration(300)
+                .setListener(new CustomAnimatorListener()
+                {
+                    @Override
+                    public void onAnimationEnd(Animator animator)
+                    {
+                        isOpened = false;
+                        isClosed = true;
+                    }
+                }).start();
 
     }
 }
