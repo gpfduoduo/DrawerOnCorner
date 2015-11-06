@@ -5,7 +5,15 @@ import com.nineoldandroids.animation.Animator;
 
 
 /**
- * Created by 郭攀峰 on 2015/11/6.
+ * Created by Panda Guo on 2015/11/6.
+ *
+ * Common Animator Listener, you need not to implement the four full animation
+ * function. For example: ****.setListener(new CustomAnimatorListener() {
+ * 
+ * @Override public void onAnimationEnd(Animator animator) { })
+ * 
+ * 
+ * 
  */
 public class CustomAnimatorListener implements Animator.AnimatorListener
 {
